@@ -129,9 +129,23 @@ select {
     background-color: var(--wkd-grey);
 }
 
-.App h1 {
+.header{
+  display: flex;
+  padding: 1rem;
+}
+
+.header > h1 {
   color: var(--wkd-orange);
   text-align: center;
+}
+
+.header-points{
+  display: flex;
+  gap: .5rem;
+  margin-right: 1rem;
+  margin-left: auto;
+  padding-top: .5rem;
+  color: var(--wkd-white);
 }
 
 .cardboard {
@@ -148,4 +162,11 @@ select {
   text-align: center;
   color: var(--wkd-white);
   background-color: var(--wkd-yellow-dark);
+}
+
+
+
+
+.selected{
+  background-color: var(--wkd-pastell-blue);
 }
