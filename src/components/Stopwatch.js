@@ -34,8 +34,10 @@ export default function Stopwatch(props){
         return (
           <div className="stopwatch">
             <div className="numbers">
-              <span id="minutes">{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
-              <span id="seconds">{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
+              <span id="minutes">{("0" + Math.floor((time / 60000) % 60)).slice(-2)}</span>
+              <p>:</p>
+              <span id="seconds">{("0" + Math.floor((time / 1000) % 60)).slice(-2)}</span>
+              <p>:</p>
               <span id="milliseconds">{("0" + ((time / 10) % 100)).slice(-2)}</span>
             </div>
             {/* <div className="buttons">

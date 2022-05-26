@@ -5,6 +5,7 @@ import './App.css';
 import Card from './components/Card';
 import GetRandomNumbers from './components/GetRandomNumbers';
 import Stopwatch from './components/Stopwatch';
+import Besttime from './components/Besttime';
 
 /*
   todo win notification
@@ -55,25 +56,55 @@ export default function App() {
 
 const [stopwatchRun, setStopwatchRun] = React.useState(true);
 const [stopwatchReset, setStopwatchReset] = React.useState(false);
+const [bestTime, setBesttime] = React.useState([]);
+
+if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage.getItem('best-minutes')) && bestTime.length !== 0){
+  setBesttime(
+    [
+      localStorage.getItem('best-minutes'),
+      localStorage.getItem('best-seconds'),
+      localStorage.getItem('best-milliseconds')
+    ]
+  )
+}
 
       // Win logic 
       if(counter === 3){
 
         // stop stopwatch 
         setStopwatchRun(false);
-        // get time
-        let min = document.getElementById("minutes").innerText;
-        let sec = document.getElementById("seconds").innerText;
-        let msec = document.getElementById("milliseconds").innerText;
+        // get time and parse it into type 'number'
+        let min = parseInt(document.getElementById("minutes").innerText);
+        let sec = parseInt(document.getElementById("seconds").innerText);
+        let msec = parseInt(document.getElementById("milliseconds").innerText);        
 
-        const onClick = async () => {
-           const result = await confirm(`Congratulations, you won the game in ${min}${sec}${msec} !`);
-           setStopwatchRun(true)
-           setStopwatchReset(true)
+        // Gratulate user, compare besttime and reset game
+        const onClick = async () => { 
+          // Wait for the notification
+           const result = await confirm(`Congratulations, you won the game in ${min}:${sec}:${msec} !`);
+           setStopwatchReset(true); // Trigger time reset
+
+           function bestVal (){
+             // Get type 'number' for comparing times
+              let newTime = parseInt(`${min}${sec}${msec}`);
+              let oldTime = parseInt(`${bestTime[0]}${bestTime[1]}${bestTime[2]}`);
+
+            if(newTime < oldTime|| bestTime.length === 0){ // check if new time is faster OR first best time
+                    setBesttime([min, sec, msec]);
+                    localStorage.setItem('best-minutes', min);
+                    localStorage.setItem('best-seconds', sec);
+                    localStorage.setItem('best-milliseconds', msec);
+                    // alert("New best time!");
+                };
+
+           };
+           bestVal();
+
+           setStopwatchRun(true); // Start stopwatch again
           };
-         onClick();
-         setCounter(0);
-         setStopwatchReset(false);
+         onClick(); // Invoke func
+         setCounter(0); // Reset counter
+         setStopwatchReset(false); // Set reset trigger back to false
         };
 
   return (
@@ -90,6 +121,7 @@ const [stopwatchReset, setStopwatchReset] = React.useState(false);
         </main>
         <footer>
           <Stopwatch run={stopwatchRun} reset={stopwatchReset} />
+          <Besttime />
         </footer>
     </div>
   );

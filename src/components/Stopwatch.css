@@ -1,0 +1,8 @@
+.stopwatch{
+    width: fit-content;
+    border: solid 1px black;
+}
+
+.numbers{
+    display: flex;
+}
