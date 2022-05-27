@@ -39,10 +39,6 @@ export default function App() {
       ? setCounter(prevState => prevState + 1)
       : setCounter(0);
 
-// todo delete this line 
-
-    document.getElementById(event.target.id).classList.add("selected")
-
       // Set new state of the selected card number collecting array
     setSelectedCards(prevState => {
       let newArr = [];  // define new array
@@ -59,14 +55,43 @@ export default function App() {
 //#region Images / Data API
 
 const [allImages, setAllImages] = React.useState([])
+// const [ newImages, setNewImages ] = React.useState(false);
+//console.log(allImages);
+// async function fetchData() {
+//   console.log("fetching");
+//   const res = await fetch("https://api.unsplash.com/photos/?client_id=yFMXUTNpe9ZjDVqNOSQJxC4WiW_hJFdNEviXNlu_Vso")
+//   const data = await res.json()
+//   setAllImages(data);
+// };
 
+// React.useEffect(() => {
+//   fetchData();
+// }, []); 
+
+//  Fixed data array for test purpose
 React.useEffect(() => {
-  async function fetchData() {
-    const res = await fetch("https://api.unsplash.com/photos/?client_id=yFMXUTNpe9ZjDVqNOSQJxC4WiW_hJFdNEviXNlu_Vso")
-    const data = await res.json()
-    setAllImages(data);
-  }
-  fetchData();
+  setAllImages([
+    { urls: {  regular: "https://images.unsplash.com/photo-1648737963059-59ec8e2d50c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzI2MjF8MXwxfGFsbHwxfHx8fHx8Mnx8MTY1MzY3OTgxNg&ixlib=rb-1.2.1&q=80&w=400"}  
+    },
+    { urls: {  regular: "https://images.unsplash.com/photo-1648737963059-59ec8e2d50c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzI2MjF8MXwxfGFsbHwxfHx8fHx8Mnx8MTY1MzY3OTgxNg&ixlib=rb-1.2.1&q=80&w=400"}  
+    },
+    { urls: {  regular: "https://images.unsplash.com/photo-1648737963059-59ec8e2d50c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzI2MjF8MXwxfGFsbHwxfHx8fHx8Mnx8MTY1MzY3OTgxNg&ixlib=rb-1.2.1&q=80&w=400"}  
+    },
+    { urls: {  regular: "https://images.unsplash.com/photo-1648737963059-59ec8e2d50c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzI2MjF8MXwxfGFsbHwxfHx8fHx8Mnx8MTY1MzY3OTgxNg&ixlib=rb-1.2.1&q=80&w=400"}  
+    },
+    { urls: {  regular: "https://images.unsplash.com/photo-1648737963059-59ec8e2d50c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzI2MjF8MXwxfGFsbHwxfHx8fHx8Mnx8MTY1MzY3OTgxNg&ixlib=rb-1.2.1&q=80&w=400"}  
+    },
+    { urls: {  regular: "https://images.unsplash.com/photo-1648737963059-59ec8e2d50c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzI2MjF8MXwxfGFsbHwxfHx8fHx8Mnx8MTY1MzY3OTgxNg&ixlib=rb-1.2.1&q=80&w=400"}  
+    },
+    { urls: {  regular: "https://images.unsplash.com/photo-1648737963059-59ec8e2d50c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzI2MjF8MXwxfGFsbHwxfHx8fHx8Mnx8MTY1MzY3OTgxNg&ixlib=rb-1.2.1&q=80&w=400"}  
+    },
+    { urls: {  regular: "https://images.unsplash.com/photo-1648737963059-59ec8e2d50c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzI2MjF8MXwxfGFsbHwxfHx8fHx8Mnx8MTY1MzY3OTgxNg&ixlib=rb-1.2.1&q=80&w=400"}  
+    },
+    { urls: {  regular: "https://images.unsplash.com/photo-1648737963059-59ec8e2d50c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzI2MjF8MXwxfGFsbHwxfHx8fHx8Mnx8MTY1MzY3OTgxNg&ixlib=rb-1.2.1&q=80&w=400"}  
+    },
+    { urls: {  regular: "https://images.unsplash.com/photo-1648737963059-59ec8e2d50c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzI2MjF8MXwxfGFsbHwxfHx8fHx8Mnx8MTY1MzY3OTgxNg&ixlib=rb-1.2.1&q=80&w=400"}  
+    },
+    ]);
 }, []); 
 
 //#endregion
@@ -119,11 +144,12 @@ if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage
 
         };
         bestVal();
-
         setStopwatchRun(true); // Start stopwatch again
       };
       onClick(); // Invoke func
       setCounter(0); // Reset counter
+      console.log("Win reset");
+      // fetchData();
       setStopwatchReset(false); // Set reset trigger back to false
   };
 
