@@ -7,9 +7,8 @@ export default function Card(props){
     const id = showNumber[props.cardNo - 1];
 
     return (
-        <div className='cards' id={id} onClick={props.handleClick}>
-            <h2>I'm card:</h2>
-            <div>{id}</div>
+        <div className='cards'  >
+            <img src={props.url} className="cards-images" id={id} onClick={props.handleClick} />
         </div>
     )
 };

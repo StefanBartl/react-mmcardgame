@@ -17,6 +17,7 @@ import Besttime from './components/Besttime';
 
 export default function App() {
 
+
 //#region Randomize, select and store selected cards & set points counter
 
   // set up state for selected cards
@@ -53,11 +54,28 @@ export default function App() {
 
 //#endregion
 
+//#region Images / Data API
+
+const [allImages, setAllImages] = React.useState([])
+
+React.useEffect(() => {
+  async function fetchData() {
+    const res = await fetch("https://api.unsplash.com/photos/?client_id=yFMXUTNpe9ZjDVqNOSQJxC4WiW_hJFdNEviXNlu_Vso")
+    const data = await res.json()
+    setAllImages(data);
+  }
+  fetchData();
+}, []); 
+
+//#endregion
+
+//#region Stopwatch, Best-Time and Win-Validation
 
 const [stopwatchRun, setStopwatchRun] = React.useState(true);
 const [stopwatchReset, setStopwatchReset] = React.useState(false);
 const [bestTime, setBesttime] = React.useState([]);
 
+// get local storage stored best-time if exists
 if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage.getItem('best-minutes')) && bestTime.length !== 0){
   setBesttime(
     [
@@ -68,47 +86,50 @@ if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage
   )
 }
 
-      // Win logic 
-      if(counter === 3){
+  // Win validation 
+  if(counter === 3){
 
-        // stop stopwatch 
-        setStopwatchRun(false);
-        // get time and parse it into type 'number'
-        let min = parseInt(document.getElementById("minutes").innerText);
-        let sec = parseInt(document.getElementById("seconds").innerText);
-        let msec = parseInt(document.getElementById("milliseconds").innerText);        
+    // stop stopwatch 
+    setStopwatchRun(false);
+    // get time and parse it into type 'number'
+    let min = parseInt(document.getElementById("minutes").innerText);
+    let sec = parseInt(document.getElementById("seconds").innerText);
+    let msec = parseInt(document.getElementById("milliseconds").innerText);        
 
-        // Gratulate user, compare besttime and reset game
-        const onClick = async () => { 
-          // Wait for the notification
-           const result = await confirm(`Congratulations, you won the game in ${min}:${sec}:${msec} !`);
-           setStopwatchReset(true); // Trigger time reset
+    // Gratulate user, compare besttime and reset game
+    const onClick = async () => { 
+      // Wait for the notification
+        const result = await confirm(`Congratulations, you won the game in ${min}:${sec}:${msec} !`);
+        setStopwatchReset(true); // Trigger time reset
 
-           function bestVal (){
-             // Get type 'number' for comparing times
-              let newTime = parseInt(`${min}${sec}${msec}`);
-              let oldTime = parseInt(`${bestTime[0]}${bestTime[1]}${bestTime[2]}`);
+        function bestVal (){
+          // Get type 'number' for comparing times
+          let newTime = parseInt(`${min}${sec}${msec}`);
+          let oldTime = parseInt(`${bestTime[0]}${bestTime[1]}${bestTime[2]}`);
 
-            if(newTime < oldTime|| bestTime.length === 0){ // check if new time is faster OR first best time
-                    setBesttime([min, sec, msec]);
-                    localStorage.setItem('best-minutes', min);
-                    localStorage.setItem('best-seconds', sec);
-                    localStorage.setItem('best-milliseconds', msec);
-                    // alert("New best time!");
-                };
+        if(newTime < oldTime|| bestTime.length === 0){ // check if new time is faster OR first best time
+                setBesttime([min, sec, msec]);
+                localStorage.setItem('best-minutes', min);
+                localStorage.setItem('best-seconds', sec);
+                localStorage.setItem('best-milliseconds', msec);
+                // alert("New best time!");
+            };
 
-           };
-           bestVal();
-
-           setStopwatchRun(true); // Start stopwatch again
-          };
-         onClick(); // Invoke func
-         setCounter(0); // Reset counter
-         setStopwatchReset(false); // Set reset trigger back to false
         };
+        bestVal();
+
+        setStopwatchRun(true); // Start stopwatch again
+      };
+      onClick(); // Invoke func
+      setCounter(0); // Reset counter
+      setStopwatchReset(false); // Set reset trigger back to false
+  };
+
+//#endregion
 
   return (
-    <div className="App">
+   <div className="App">
+      
         <header className='header'>
             <h1>Memory-Card-Game</h1>
             <div className='header-points'>
@@ -116,13 +137,22 @@ if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage
                 <p className='points-counter'>{counter}</p>
             </div>
         </header>
+
         <main className='cardboard'>
-            {randomNumbersArray.map(el =><Card cardNo={el} key={el} handleClick={getSelectedCardNumber} />)}
+
+            {randomNumbersArray.map(el =>
+            {let url = "";
+              allImages.length !== 0  ? url = allImages[el - 1].urls.regular : url = "";
+              return <Card cardNo={el} key={el} url={url} handleClick={getSelectedCardNumber} />
+            }
+            )}
         </main>
+
         <footer>
           <Stopwatch run={stopwatchRun} reset={stopwatchReset} />
           <Besttime />
         </footer>
+
     </div>
   );
 };
