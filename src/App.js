@@ -8,11 +8,13 @@ import Stopwatch from './components/Stopwatch';
 import Besttime from './components/Besttime';
 
 /*
-  todo win notification
-  todo get images ! 
-  todo  help ?
+  todo after win get new set of images
+  todo  instructions
+  todo nicer win notification
   todo Translate ? 
-  todo scoreboard with local storage?
+  todo finalize design
+  todo cleanup code
+  todo implement hard game with images which are more similiar (via API topic function)
 */
 
 export default function App() {
