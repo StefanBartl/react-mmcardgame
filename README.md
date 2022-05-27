@@ -1,70 +1,116 @@
-# Getting Started with Create React App
+# Memory-Card-Game || React
+# === Special credits to ===
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The Odin Project - the place where i used to learn Web Development and this project is a training work from: 
 
-## Available Scripts
+https://www.theodinproject.com/
+If you want to learn web development, especially on your own, I can't recommend a better website. Self-discipline and motivation required!
 
-In the project directory, you can run:
+Stackoverflow and the great Developers there which help me a lot:
+https://www.stackoverflow.com/
 
-### `npm start`
+Representative for all the great Youtube-Channels about Web-Development Kevin Powell, for his super useful
+Channel about  CSS:
+https://www.youtube.com/kepowob
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Iconmonstr & Simpleicon for the free SVG & PNG-Icons:
+https://www.iconmonstr.com/    https://www.simpleicon.org/
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Freesound, Open Gam Art &  Inkompetech for the free Audio-Files:
+https://www.freesound.com, https://www.opengameart.org, https://www.inkompetech.com
 
-### `npm test`
+This project is made with Visual Studio Code, Chrome/Firefox, Git and GitHub on a Linux Ubuntu OS.
+Thanks to all of the people which made that or working there.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# === Thanks to all of you guys ===
+Without the professional work of those mentioned here, but also all the others in the open source community
+it would not be possible or extremely difficult for people like me to achieve my dreams. Please keep your spirit and your mindset: A big thank you to everyone who feels addressed now!
 
-### `npm run build`
+A few words to the readers of the Javascript / CSS Files: 
+The code is - as you can see - sufficiently commented and structured. For some programmers this might seem strange, but for me and my way of coding it is extremely helpful. I like to use whitespace for formatting, i also describe the individual processes with comments in as much detail as it is useful for me so that I can get back to work reliably and quickly after a while. his makes working on projects for me a lot easier.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+If you have any comments, suggestions for improvement or criticism of the project, please contact me! 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+You find my actual contact here: https://github.com/StefanBartl/StefanBartl_Portfolio
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I am very excited about it!
 
-### `npm run eject`
+# = HTML, CSS & Javascript - what wonderful, tricky languages. =
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Also a big and heartfelt thank you to all my friends and family for the support you always give me. 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+=== Feel embraced! ===
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+​		
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+​					Stefan Bartl
 
-## Learn More
+​		(WKDSteve or WKDMinerva)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+​				Vienna | Austria
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+​					May, 2022
 
-### Code Splitting
+​	Loving Science, Tech & Peace !
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+============================================================================================================================
 
-### Analyzing the Bundle Size
+#  #README.md/Deutsch
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+=============================================
 
-### Making a Progressive Web App
+# === Besondere Anerkennung geht an ===
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Das Odin-Projekt - der Ort, an dem ich Webentwicklung "von der Picke auf" gelernt habe:
 
-### Advanced Configuration
+https://www.theodinproject.com/
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Wenn du Webentwicklung lernen möchtest, insbesondere auf eigene Faust, kann ich keine bessere Website empfehlen. Selbstdisziplin und Motivation ist jedoch erforderlich!
 
-### Deployment
+Stackoverflow und die großartigen Entwickler-Community dort:
+https://www.stackoverflow.com/
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Stellvertretend für all die tollen Youtube-Kanäle zum Thema Web-Entwicklung Kevin Powell, für seinen herrvoragendenden
+Kanal über CSS:
+https://www.youtube.com/kepowob
 
-### `npm run build` fails to minify
+Iconmonstr & Simpleicon für die kostenlosen SVG & PNG-Icons die ich gerne verwende:
+https://www.iconmonstr.com/ https://www.simpleicon.org/
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Freesound, Open Gam Art & Inkompetech für die kostenlosen Audio-Files:
+https://www.freesound.com, https://www.opengameart.org, https://www.inkompetech.com
+
+Dieses Projekt wurde mit Visual Studio Code, Chrome/Firefox, Git und GitHub auf einem Linux-Ubuntu-Betriebssystem erstellt.
+Danke an alle Leute, die diese Applikationen am Leben halten oder dort arbeiten.
+
+# === Danke an euch alle ===
+
+Ohne die professionelle Arbeit der hier genannten, aber auch aller anderen in der Open-Source-Community
+wäre es für Menschen wie mich nicht möglich oder zumindest extrem schwierig, meine Träume zu verwirklichen. Bitte bewahrt euren  Spirit und euer Mindset: Ein großes Dankeschön an alle, die sich jetzt angesprochen fühlen!
+
+Ein paar Worte an die Leser der Javascript/CSS-Dateien:
+Der Code ist - wie man sieht - häufig kommentiert und strukturiert. Für manche Programmierer mag das seltsam erscheinen, aber für mich und meine Art zu codieren ist es extrem hilfreich. Zur Formatierung verwende ich gerne Leerzeichen, auch beschreibe ich die einzelnen Vorgänge mit Kommentaren so ausführlich wie es für mich sinnvoll erscheint, damit ich mich nach einiger Zeit zuverlässig und schnell wieder an die Arbeit machen kann. Das erleichtert mir die Arbeit an Projekten erheblich.
+
+Wenn du Anmerkungen, Verbesserungsvorschläge oder Kritik zum Projekt hast, kontaktiere mich bitte!
+
+Meinen aktuellen Kontakt findest du hier: https://github.com/StefanBartl/StefanBartl_Portfolio
+
+Ich freue mich sehr darauf!
+
+# = HTML, CSS & Javascript - was für wunderbare, knifflige Sprachen. =
+
+Auch ein großes und herzliches Dankeschön an alle meine Freunde und Familie für die Unterstützung, die sie mir stets bei allem geben. Ohne euch wäre NICHTS möglich!
+
+=== Fühlt euch umarmt! ===
+
+
+
+​				Stefan Bartl
+
+ (WKDSteve oder WKDMinerva)
+
+ 			Wien | Österreich
+
+​				April 2022
+
+Liebe Wissenschaft, Technik & Frieden!

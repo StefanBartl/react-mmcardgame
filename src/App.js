@@ -8,25 +8,23 @@ import Stopwatch from './components/Stopwatch';
 import Besttime from './components/Besttime';
 
 /*
-  todo after win get new set of images
-  todo  instructions
   todo nicer win notification
   todo Translate ? 
   todo finalize design
   todo cleanup code
-  todo implement hard game with images which are more similiar (via API topic function)
+  todo implement randomized images after win to make it more difficult and interesting
+  todo implement harder game with images which are more similiar (via API topic function)
 */
 
 export default function App() {
 
-
-//#region Randomize, select and store selected cards & set points counter
+//#region Randomize, select and store selected cards & set remaining counter
 
   // set up state for selected cards
   const [ selectedCards, setSelectedCards ] = React.useState([]);
 
   // set up state for points counter
-  const [ counter, setCounter ] = React.useState(0);
+  const [ counter, setCounter ] = React.useState(10);
 
   // get a array with randomized sequence of numbers from 1 - 10
   const randomNumbersArray = GetRandomNumbers();
@@ -36,7 +34,7 @@ export default function App() {
 
     // Set new state of points counter
     selectedCards.indexOf(event.target.id) === -1
-      ? setCounter(prevState => prevState + 1)
+      ? setCounter(prevState => prevState - 1)
       : setCounter(0);
 
       // Set new state of the selected card number collecting array
@@ -49,50 +47,6 @@ export default function App() {
       return newArr; // set the new state of the array for selected card numbers
     });
   };
-
-//#endregion
-
-//#region Images / Data API
-
-const [allImages, setAllImages] = React.useState([])
-// const [ newImages, setNewImages ] = React.useState(false);
-//console.log(allImages);
-// async function fetchData() {
-//   console.log("fetching");
-//   const res = await fetch("https://api.unsplash.com/photos/?client_id=yFMXUTNpe9ZjDVqNOSQJxC4WiW_hJFdNEviXNlu_Vso")
-//   const data = await res.json()
-//   setAllImages(data);
-// };
-
-// React.useEffect(() => {
-//   fetchData();
-// }, []); 
-
-//  Fixed data array for test purpose
-React.useEffect(() => {
-  setAllImages([
-    { urls: {  regular: "https://images.unsplash.com/photo-1648737963059-59ec8e2d50c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzI2MjF8MXwxfGFsbHwxfHx8fHx8Mnx8MTY1MzY3OTgxNg&ixlib=rb-1.2.1&q=80&w=400"}  
-    },
-    { urls: {  regular: "https://images.unsplash.com/photo-1648737963059-59ec8e2d50c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzI2MjF8MXwxfGFsbHwxfHx8fHx8Mnx8MTY1MzY3OTgxNg&ixlib=rb-1.2.1&q=80&w=400"}  
-    },
-    { urls: {  regular: "https://images.unsplash.com/photo-1648737963059-59ec8e2d50c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzI2MjF8MXwxfGFsbHwxfHx8fHx8Mnx8MTY1MzY3OTgxNg&ixlib=rb-1.2.1&q=80&w=400"}  
-    },
-    { urls: {  regular: "https://images.unsplash.com/photo-1648737963059-59ec8e2d50c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzI2MjF8MXwxfGFsbHwxfHx8fHx8Mnx8MTY1MzY3OTgxNg&ixlib=rb-1.2.1&q=80&w=400"}  
-    },
-    { urls: {  regular: "https://images.unsplash.com/photo-1648737963059-59ec8e2d50c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzI2MjF8MXwxfGFsbHwxfHx8fHx8Mnx8MTY1MzY3OTgxNg&ixlib=rb-1.2.1&q=80&w=400"}  
-    },
-    { urls: {  regular: "https://images.unsplash.com/photo-1648737963059-59ec8e2d50c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzI2MjF8MXwxfGFsbHwxfHx8fHx8Mnx8MTY1MzY3OTgxNg&ixlib=rb-1.2.1&q=80&w=400"}  
-    },
-    { urls: {  regular: "https://images.unsplash.com/photo-1648737963059-59ec8e2d50c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzI2MjF8MXwxfGFsbHwxfHx8fHx8Mnx8MTY1MzY3OTgxNg&ixlib=rb-1.2.1&q=80&w=400"}  
-    },
-    { urls: {  regular: "https://images.unsplash.com/photo-1648737963059-59ec8e2d50c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzI2MjF8MXwxfGFsbHwxfHx8fHx8Mnx8MTY1MzY3OTgxNg&ixlib=rb-1.2.1&q=80&w=400"}  
-    },
-    { urls: {  regular: "https://images.unsplash.com/photo-1648737963059-59ec8e2d50c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzI2MjF8MXwxfGFsbHwxfHx8fHx8Mnx8MTY1MzY3OTgxNg&ixlib=rb-1.2.1&q=80&w=400"}  
-    },
-    { urls: {  regular: "https://images.unsplash.com/photo-1648737963059-59ec8e2d50c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMzI2MjF8MXwxfGFsbHwxfHx8fHx8Mnx8MTY1MzY3OTgxNg&ixlib=rb-1.2.1&q=80&w=400"}  
-    },
-    ]);
-}, []); 
 
 //#endregion
 
@@ -111,10 +65,10 @@ if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage
       localStorage.getItem('best-milliseconds')
     ]
   )
-}
+};
 
   // Win validation 
-  if(counter === 3){
+  if(counter === 0){
 
     // stop stopwatch 
     setStopwatchRun(false);
@@ -148,10 +102,8 @@ if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage
       };
       onClick(); // Invoke func
       setCounter(0); // Reset counter
-      console.log("Win reset");
-      // fetchData();
       setStopwatchReset(false); // Set reset trigger back to false
-  };
+   };
 
 //#endregion
 
@@ -159,28 +111,26 @@ if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage
    <div className="App">
       
         <header className='header'>
-            <h1>Memory-Card-Game</h1>
-            <div className='header-points'>
-                <p className='points-text'>Points: </p>
-                <p className='points-counter'>{counter}</p>
+            <div>     
+                <h1>Memory-Card-Game</h1>
+                <h6>Click all 10 images as fast as you can, but don't click on any twice or you have to restart!</h6>
+            </div>
+            <div className='stats'>
+                <div className='header-points'>
+                    <p className='points-text'>Remaining: </p>
+                    <p className='points-counter'>{counter}</p>
+                </div>
+                <div className='timeWrapper'>
+                    <Stopwatch run={stopwatchRun} reset={stopwatchReset} />
+                    <Besttime />
+                </div>
             </div>
         </header>
 
         <main className='cardboard'>
-
-            {randomNumbersArray.map(el =>
-            {let url = "";
-              allImages.length !== 0  ? url = allImages[el - 1].urls.regular : url = "";
-              return <Card cardNo={el} key={el} url={url} handleClick={getSelectedCardNumber} />
-            }
-            )}
+            {randomNumbersArray.map(el =><Card cardNo={el} key={el} handleClick={getSelectedCardNumber} />)}
         </main>
 
-        <footer>
-          <Stopwatch run={stopwatchRun} reset={stopwatchReset} />
-          <Besttime />
-        </footer>
-
-    </div>
+  </div>
   );
 };

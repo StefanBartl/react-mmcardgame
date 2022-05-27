@@ -1,5 +1,4 @@
-import React from 'react';
-import { createApi } from 'unsplash-js';
+import React, { useEffect } from 'react';
 
 export default function Card(props){
 
@@ -9,29 +8,28 @@ export default function Card(props){
 
 
 //#region unsplash.com API to get random images
-// MAN: https://github.com/unsplash/unsplash-js#usage
+ const [ allImages, setAllImagess ] = React.useState([]); 
 
-const unsplash = createApi({
-  accessKey: 'yFMXUTNpe9ZjDVqNOSQJxC4WiW_hJFdNEviXNlu_Vso',
-  //...other fetch options
-//   headers: { 'X-Custom-Header': 'foo' },
-});
+async function fetchData() {
+  const res = await fetch("https://api.unsplash.com/photos/?client_id=yFMXUTNpe9ZjDVqNOSQJxC4WiW_hJFdNEviXNlu_Vso")
+  const data = await res.json()
+  setAllImagess(data);
+};
 
-unsplash.photos.getRandom({
-    collectionIds: ['abc123'],
-    topicIds: ['def456'],
-    featured: true,
-    username: 'naoufal',
-    query: 'dog',
-    count: 1,
-  });
+React.useEffect(() => {
+  fetchData();
+}, []); 
+
+let url = "";  allImages.length !== 0  ? url = allImages[id - 1].urls.regular : url = "";
 
 //#endregion
 
     
     return (
         <div className='cards'  >
-            <img src={props.url} className="cards-images" id={id} onClick={props.handleClick} />
+            <img 
+            src={url} className="cards-images" id={id} onClick={props.handleClick} alt='Random image, which player have to remember to play the game.'
+            />
         </div>
     )
 };
