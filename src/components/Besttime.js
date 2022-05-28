@@ -24,12 +24,12 @@ export default function Bestttime(){
      element =  <p>{minutes}:{seconds}:{milliseconds}</p>
     } else {
      // if there is no best-time stored....
-    element = <p>no current best-time</p>
+    element = <p>{localStorage.Language === "de" ? "noch keine Beszeit" : "no current best-time"}</p>
     };
     
     return(          
             <div className='best-time-div'>
-                    <h3>Best time:</h3>
+                    <h3>{localStorage.Language === "de" ? "Bestzeit" : "Best time:"}</h3>
                     {element}
             </div>
     )

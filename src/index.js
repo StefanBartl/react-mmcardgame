@@ -4,6 +4,22 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import App from './App';
 
+
+//#region Set language
+
+// get setted language from local storage or browser language and store it there
+const browserLanguagePattern = localStorage.language || navigator.language;
+
+// RegEx to test for German language
+const langRegExDE = /de/ig; 
+
+// Test for german browser language against the getted browser language and finally set localStorage language
+langRegExDE.test(browserLanguagePattern) 
+  ? localStorage.setItem("Language", "de") 
+  : localStorage.setItem("Language", "en");
+
+//#endregion
+
 const container = document.getElementById('root');
 const root = createRoot(container); 
 
