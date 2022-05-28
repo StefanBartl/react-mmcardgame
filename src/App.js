@@ -8,10 +8,10 @@ import Stopwatch from './components/Stopwatch';
 import Besttime from './components/Besttime';
 
 /*
-  todo nicer win notification
   todo finalize design
   todo cleanup code
   todo implement own file templates to code structure
+  todo nicer win notification
   todo implement randomized images after win to make it more difficult and interesting
   todo implement harder game with images which are more similiar (via API topic function)
 */
