@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/react-mmcardgame/precache-manifest.418e6f25d824c74d3d923e0f3a4230ac.js"
+  "/react-mmcardgame/precache-manifest.bea44a5e7aed8e964373d8b510271fb5.js"
 );
 
 workbox.clientsClaim();
