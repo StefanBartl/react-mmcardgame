@@ -5,7 +5,7 @@ export default function Bestttime(){
     
     let element, minutes, seconds, milliseconds;
 
-    // if there is a bes- time stored...
+    // if there is a best - time stored...
     if(localStorage.getItem('best-minutes')){
 
         // Get values and test for two digits

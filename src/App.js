@@ -73,7 +73,7 @@ if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage
 };
 
 // ? Win validation 
-if(counter === 0){
+if(counter === 9){
 
   // stop stopwatch 
   setStopwatchRun(false); // Stopp stopwatch
@@ -83,61 +83,84 @@ if(counter === 0){
   let msec = parseInt(document.getElementById("milliseconds").innerText);        
 
   // Gratulate user, compare besttime and reset game
-  const onClick = async () => {
-    // Wait for the notification
+  const winValidation = async () => {
+
+    // Get type 'number' for comparing times
+    let newTime = parseInt(`${min}${sec}${msec}`);
+    let oldTime = parseInt(`${bestTime[0]}${bestTime[1]}${bestTime[2]}`);
     let winMessage = "";
-    localStorage.Language === "de" 
-      ? winMessage = `Gratulation, du hats das Spiel in ${min}:${sec}:${msec} gewonnen!`
-      : winMessage = `Congratulations, you won the game in ${min}:${sec}:${msec} !`
-      
+    // Check if new time is faster / first best time or normal win
+    if(newTime < oldTime|| bestTime.length === 0){ 
+          setBesttime([min, sec, msec]);
+          localStorage.setItem('best-minutes', min);
+          localStorage.setItem('best-seconds', sec);
+          localStorage.setItem('best-milliseconds', msec);
+          localStorage.Language === "de" 
+            ? winMessage = `Gratulation, du hats das Spiel in ${min}:${sec}:${msec} gewonnen UND eine neue Bestzeit erreicht !`
+            : winMessage = `Congratulations, you won the game in ${min}:${sec}:${msec} AND its a new best-time !`;
+      } else {
+        localStorage.Language === "de" 
+        ? winMessage = `Gratulation, du hats das Spiel in ${min}:${sec}:${msec} gewonnen! (Aber leider keine Bestzeit, das nächste mal schaffst du es!)`
+        : winMessage = `Congratulations, you won the game in ${min}:${sec}:${msec} ! ( But unfortunately no best time, next time you can do it!)`;
+      };
+
       // Wait for the user confirmation 
       await confirm(winMessage);
-      
-      setStopwatchReset(true); // Trigger time reset
-
-        // Get type 'number' for comparing times
-        let newTime = parseInt(`${min}${sec}${msec}`);
-        let oldTime = parseInt(`${bestTime[0]}${bestTime[1]}${bestTime[2]}`);
-
-      if(newTime < oldTime|| bestTime.length === 0){ // check if new time is faster OR first best time
-              setBesttime([min, sec, msec]);
-              localStorage.setItem('best-minutes', min);
-              localStorage.setItem('best-seconds', sec);
-              localStorage.setItem('best-milliseconds', msec);
-              let bestMessage = "";
-              localStorage.Language === "de" 
-                ? bestMessage = `Gratulation, zur neuen Bestzeit!`
-                : bestMessage = `Congratulations, new best-time !`;
-            confirm(bestMessage);
-          };
-
-      setStopwatchRun(true); // Start stopwatch again
+       setStopwatchReset(true); // Trigger time reset
+       setStopwatchRun(true); // Start stopwatch again
     };
 
-    onClick(); // Invoke func
+    winValidation(); // Invoke func
     setCounter(0); // Reset counter
     setStopwatchReset(false); // Set reset trigger back to false
- };
+};
 
    // ? Best-Time reset in local storage
-  function timeReset (event){
+function timeReset (event){
     event.preventDefault();
     setBesttime([]);
     localStorage.removeItem('best-minutes');
     localStorage.removeItem('best-seconds');
     localStorage.removeItem('best-milliseconds');
-  };
+};
 
   // ? Start/Stop 
 function startStop (event){
       event.preventDefault();
+
+      // Toggle stopwatch and counter
       stopwatchRun ? setStopwatchRun(false) : setStopwatchRun(true);
       if(counter !== 10) setCounter(10);
       stopwatchRun ? setStopwatchReset(false) : setStopwatchReset(true);
-  };
+  
+      // Get all cards in array
+      const cardsArray = document.querySelectorAll('.cards-images');
+      // if user stops game, images blurred out
+      if(stopwatchRun){
+        for(let card of cardsArray){
+          card.style.pointerEvents = 'none';
+          card.style.filter = 'blur(.4rem)';
+          card.style.transform = "rotate(180deg )";
+        };
+      };
+      // if user starts game, clean images
+      if(!stopwatchRun){
+        for(let card of cardsArray){
+          card.style.pointerEvents = 'all';
+          card.style.filter = 'blur(0rem)';
+          card.style.transform = "rotate(0deg )";
+        };
+      };
 
-  //#endregion
+};
 
+//#endregion
+
+// ? Start game correctly
+
+React.useEffect(()=>{
+  document.querySelector('.startstop-btn').click();
+},[])
 
   return (
    <div className="App">
