@@ -71,7 +71,7 @@ if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage
   if(counter === 8){
 
     // stop stopwatch 
-    setStopwatchRun(false);
+    setStopwatchRun(false); // Stopp stopwatch
     // get time and parse it into type 'number'
     let min = parseInt(document.getElementById("minutes").innerText);
     let sec = parseInt(document.getElementById("seconds").innerText);
@@ -124,6 +124,19 @@ if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage
 
 //#endregion
 
+
+function start (event){
+  event.preventDefault();
+
+  stopwatchRun ? setStopwatchRun(false) : setStopwatchRun(true);
+  if(counter !== 10) setCounter(10);
+  stopwatchRun ? setStopwatchReset(false) : setStopwatchReset(true);
+
+  };
+
+
+
+
   return (
    <div className="App">
       
@@ -144,7 +157,10 @@ if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage
                 <div className='timeWrapper'>
                     <Stopwatch run={stopwatchRun} reset={stopwatchReset} />
                     <Besttime />
-                    <input type="button" value="reset" className='reset-btn' onClick={timeReset} />
+                    <dv className="start-stop-reset">
+                        <input type="button" value={stopwatchRun ? "stop" : "start"} className='startstop-btn' onClick={start} />
+                        <input type="button" value="reset" className='reset-btn' onClick={timeReset} />
+                    </dv>
                 </div>
             </div>
         </header>

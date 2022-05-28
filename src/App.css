@@ -178,6 +178,20 @@ select {
   flex-direction: column;
 }
 
+.start-stop-reset{
+  display: flex;
+  width: 100%;
+}
+.startstop-btn {
+  height: fit-content;
+  width: 6ch;
+  font-size: small;
+  outline:none;
+  border: none;
+  color: var(--wkd-white);
+  background-color: var(--wkd-grapefruit);
+}
+
 .reset-btn {
   height: fit-content;
   font-size: small;
@@ -185,7 +199,7 @@ select {
   outline:none;
   border: none;
   color: var(--wkd-white);
-  background-color: var(--wkd-grapefruit);
+  background-color: var(--wkd-pastell-blue);
 }
 
 .cardboard {
