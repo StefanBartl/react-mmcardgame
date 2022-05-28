@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { confirm } from "react-confirm-box";
-
 import './App.css';
+// Components
 import Card from './components/Card';
 import GetRandomNumbers from './components/GetRandomNumbers';
 import Stopwatch from './components/Stopwatch';
@@ -9,14 +9,15 @@ import Besttime from './components/Besttime';
 
 /*
   todo nicer win notification
-  todo Translate ? 
   todo finalize design
   todo cleanup code
+  todo implement own file templates to code structure
   todo implement randomized images after win to make it more difficult and interesting
   todo implement harder game with images which are more similiar (via API topic function)
 */
 
 export default function App() {
+
 
 //#region Randomize, select and store selected cards & set remaining counter
 
@@ -78,9 +79,13 @@ if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage
     let msec = parseInt(document.getElementById("milliseconds").innerText);        
 
     // Gratulate user, compare besttime and reset game
-    const onClick = async () => { 
+    const onClick = async () => { // ! NNNEEED?
       // Wait for the notification
-        const result = await confirm(`Congratulations, you won the game in ${min}:${sec}:${msec} !`);
+      const winMessage = "";
+      localStorage.Language === "de" 
+        ? winMessage = `Gratulation, du hats das Spiel in ${min}:${sec}:${msec} gewonnen!`
+        : winMessage = `Congratulations, you won the game in ${min}:${sec}:${msec} !`
+        await confirm(winMessage);
         setStopwatchReset(true); // Trigger time reset
 
         function bestVal (){
@@ -93,7 +98,10 @@ if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage
                 localStorage.setItem('best-minutes', min);
                 localStorage.setItem('best-seconds', sec);
                 localStorage.setItem('best-milliseconds', msec);
-                // alert("New best time!");
+                const bestMessage = "";
+                localStorage.Language === "de" 
+                  ? bestMessage = `Gratulation, neue Bestzeit!`
+                  : bestMessage = `Congratulations, new best-time !`
             };
 
         };
@@ -113,11 +121,15 @@ if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage
         <header className='header'>
             <div>     
                 <h1>Memory-Card-Game</h1>
-                <h6>Click all 10 images as fast as you can, but don't click on any twice or you have to restart!</h6>
+                <h6>{
+                  localStorage.Language === "de"
+                    ? "Klicke auf die 10 Bilder so schnell du kannst, klicke aber auf keines 2 mal oder du beginnst von vorne!"
+                    : "Click all 10 images as fast as you can, but don't click on any twice or you have to restart!"
+                }</h6>
             </div>
             <div className='stats'>
                 <div className='header-points'>
-                    <p className='points-text'>Remaining: </p>
+                    <p className='points-text'>{localStorage.Language === "de" ? "Noch zu klicken" : "Remaining to click"}:</p>
                     <p className='points-counter'>{counter}</p>
                 </div>
                 <div className='timeWrapper'>
