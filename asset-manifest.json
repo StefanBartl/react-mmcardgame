@@ -1,16 +1,15 @@
 {
-  "files": {
-    "main.css": "/react-mmcardgame/static/css/main.073c9b0a.css",
-    "main.js": "/react-mmcardgame/static/js/main.b8f579dc.js",
-    "static/js/787.241f9959.chunk.js": "/react-mmcardgame/static/js/787.241f9959.chunk.js",
-    "static/media/logo.svg": "/react-mmcardgame/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/react-mmcardgame/index.html",
-    "main.073c9b0a.css.map": "/react-mmcardgame/static/css/main.073c9b0a.css.map",
-    "main.b8f579dc.js.map": "/react-mmcardgame/static/js/main.b8f579dc.js.map",
-    "787.241f9959.chunk.js.map": "/react-mmcardgame/static/js/787.241f9959.chunk.js.map"
-  },
-  "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.b8f579dc.js"
-  ]
+  "main.css": "/react-mmcardgame/static/css/main.4a0aeb97.chunk.css",
+  "main.js": "/react-mmcardgame/static/js/main.edf91be2.chunk.js",
+  "main.js.map": "/react-mmcardgame/static/js/main.edf91be2.chunk.js.map",
+  "runtime~main.js": "/react-mmcardgame/static/js/runtime~main.e0255286.js",
+  "runtime~main.js.map": "/react-mmcardgame/static/js/runtime~main.e0255286.js.map",
+  "static/js/2.0e52f05c.chunk.js": "/react-mmcardgame/static/js/2.0e52f05c.chunk.js",
+  "static/js/2.0e52f05c.chunk.js.map": "/react-mmcardgame/static/js/2.0e52f05c.chunk.js.map",
+  "static/js/3.76c3d8c6.chunk.js": "/react-mmcardgame/static/js/3.76c3d8c6.chunk.js",
+  "static/js/3.76c3d8c6.chunk.js.map": "/react-mmcardgame/static/js/3.76c3d8c6.chunk.js.map",
+  "index.html": "/react-mmcardgame/index.html",
+  "precache-manifest.418e6f25d824c74d3d923e0f3a4230ac.js": "/react-mmcardgame/precache-manifest.418e6f25d824c74d3d923e0f3a4230ac.js",
+  "service-worker.js": "/react-mmcardgame/service-worker.js",
+  "static/css/main.4a0aeb97.chunk.css.map": "/react-mmcardgame/static/css/main.4a0aeb97.chunk.css.map"
 }
