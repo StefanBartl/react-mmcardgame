@@ -1,16 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { confirm } from "react-confirm-box";
 import './App.css';
-// Components
 import Card from './components/Card';
 import GetRandomNumbers from './components/GetRandomNumbers';
 import Stopwatch from './components/Stopwatch';
 import Besttime from './components/Besttime';
 
 /*
-  todo cleanup code
+! Do this for better coding and user experience
   todo implement own file templates to code structure
-  todo nicer win notification
+  todo own logo !
   todo implement randomized images after win to make it more difficult and interesting
   todo implement harder game with images which are more similiar (via API topic function)
 */
@@ -29,13 +28,15 @@ export default function App() {
   // get a array with randomized sequence of numbers from 1 - 10
   const randomNumbersArray = GetRandomNumbers();
 
+
+  // ?  Get from user selected card
   function getSelectedCardNumber(event){
     event.preventDefault();
 
     // Set new state of points counter
     selectedCards.indexOf(event.target.id) === -1
       ? setCounter(prevState => prevState - 1)
-      : setCounter(0);
+      : setCounter(10);
 
       // Set new state of the selected card number collecting array
     setSelectedCards(prevState => {
@@ -50,13 +51,17 @@ export default function App() {
 
 //#endregion
 
-//#region Stopwatch, Best-Time, Best-Time Reset and Win-Validation
+
+//#region Stopwatch, Win-Validation, Best-Time, Best-Time Reset and 
 
 const [stopwatchRun, setStopwatchRun] = React.useState(true);
+
 const [stopwatchReset, setStopwatchReset] = React.useState(false);
+
 const [bestTime, setBesttime] = React.useState([]);
 
-// get local storage stored best-time if exists
+
+// ? Get local storage stored best-time if exists
 if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage.getItem('best-minutes')) && bestTime.length !== 0){
   setBesttime(
     [
@@ -67,74 +72,71 @@ if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage
   )
 };
 
-  // Win validation 
-  if(counter === 8){
+// ? Win validation 
+if(counter === 0){
 
-    // stop stopwatch 
-    setStopwatchRun(false); // Stopp stopwatch
-    // get time and parse it into type 'number'
-    let min = parseInt(document.getElementById("minutes").innerText);
-    let sec = parseInt(document.getElementById("seconds").innerText);
-    let msec = parseInt(document.getElementById("milliseconds").innerText);        
+  // stop stopwatch 
+  setStopwatchRun(false); // Stopp stopwatch
+  // get time and parse it into type 'number'
+  let min = parseInt(document.getElementById("minutes").innerText);
+  let sec = parseInt(document.getElementById("seconds").innerText);
+  let msec = parseInt(document.getElementById("milliseconds").innerText);        
 
-    // Gratulate user, compare besttime and reset game
-    const onClick = async () => { // ! NNNEEED?
-      // Wait for the notification
-      let winMessage = "";
-      localStorage.Language === "de" 
-        ? winMessage = `Gratulation, du hats das Spiel in ${min}:${sec}:${msec} gewonnen!`
-        : winMessage = `Congratulations, you won the game in ${min}:${sec}:${msec} !`
-        await confirm(winMessage);
-        setStopwatchReset(true); // Trigger time reset
+  // Gratulate user, compare besttime and reset game
+  const onClick = async () => {
+    // Wait for the notification
+    let winMessage = "";
+    localStorage.Language === "de" 
+      ? winMessage = `Gratulation, du hats das Spiel in ${min}:${sec}:${msec} gewonnen!`
+      : winMessage = `Congratulations, you won the game in ${min}:${sec}:${msec} !`
+      
+      // Wait for the user confirmation 
+      await confirm(winMessage);
+      
+      setStopwatchReset(true); // Trigger time reset
 
-        function bestVal (){
-          // Get type 'number' for comparing times
-          let newTime = parseInt(`${min}${sec}${msec}`);
-          let oldTime = parseInt(`${bestTime[0]}${bestTime[1]}${bestTime[2]}`);
+        // Get type 'number' for comparing times
+        let newTime = parseInt(`${min}${sec}${msec}`);
+        let oldTime = parseInt(`${bestTime[0]}${bestTime[1]}${bestTime[2]}`);
 
-        if(newTime < oldTime|| bestTime.length === 0){ // check if new time is faster OR first best time
-                setBesttime([min, sec, msec]);
-                localStorage.setItem('best-minutes', min);
-                localStorage.setItem('best-seconds', sec);
-                localStorage.setItem('best-milliseconds', msec);
-                let bestMessage = "";
-                localStorage.Language === "de" 
-                  ? bestMessage = `Gratulation, neue Bestzeit!`
-                  : bestMessage = `Congratulations, new best-time !`
-            };
+      if(newTime < oldTime|| bestTime.length === 0){ // check if new time is faster OR first best time
+              setBesttime([min, sec, msec]);
+              localStorage.setItem('best-minutes', min);
+              localStorage.setItem('best-seconds', sec);
+              localStorage.setItem('best-milliseconds', msec);
+              let bestMessage = "";
+              localStorage.Language === "de" 
+                ? bestMessage = `Gratulation, zur neuen Bestzeit!`
+                : bestMessage = `Congratulations, new best-time !`;
+            confirm(bestMessage);
+          };
 
-        };
-        bestVal();
-        setStopwatchRun(true); // Start stopwatch again
-      };
-      onClick(); // Invoke func
-      setCounter(0); // Reset counter
-      setStopwatchReset(false); // Set reset trigger back to false
-   };
+      setStopwatchRun(true); // Start stopwatch again
+    };
 
-   // Best-Time Reset
-   function timeReset (event){
+    onClick(); // Invoke func
+    setCounter(0); // Reset counter
+    setStopwatchReset(false); // Set reset trigger back to false
+ };
+
+   // ? Best-Time reset in local storage
+  function timeReset (event){
     event.preventDefault();
     setBesttime([]);
     localStorage.removeItem('best-minutes');
     localStorage.removeItem('best-seconds');
     localStorage.removeItem('best-milliseconds');
-   };
-
-
-//#endregion
-
-
-function start (event){
-  event.preventDefault();
-
-  stopwatchRun ? setStopwatchRun(false) : setStopwatchRun(true);
-  if(counter !== 10) setCounter(10);
-  stopwatchRun ? setStopwatchReset(false) : setStopwatchReset(true);
-
   };
 
+  // ? Start/Stop 
+function startStop (event){
+      event.preventDefault();
+      stopwatchRun ? setStopwatchRun(false) : setStopwatchRun(true);
+      if(counter !== 10) setCounter(10);
+      stopwatchRun ? setStopwatchReset(false) : setStopwatchReset(true);
+  };
 
+  //#endregion
 
 
   return (
@@ -157,10 +159,10 @@ function start (event){
                 <div className='timeWrapper'>
                     <Stopwatch run={stopwatchRun} reset={stopwatchReset} />
                     <Besttime />
-                    <dv className="start-stop-reset">
-                        <input type="button" value={stopwatchRun ? "stop" : "start"} className='startstop-btn' onClick={start} />
+                    <div className="start-stop-reset">
+                        <input type="button" value={stopwatchRun ? "stop" : "start"} className='startstop-btn' onClick={startStop} />
                         <input type="button" value="reset" className='reset-btn' onClick={timeReset} />
-                    </dv>
+                    </div>
                 </div>
             </div>
         </header>

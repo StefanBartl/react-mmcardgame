@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import'./Card.css';
 
 export default function Card(props){
@@ -29,7 +29,7 @@ let url = "";  allImages.length !== 0  ? url = allImages[id - 1].urls.regular : 
     return (
         <div className='cards'  >
             <img 
-            src={url} className="cards-images" id={id} onClick={props.handleClick} alt='Random image, which player have to remember to play the game.'
+            src={url} className="cards-images" id={id} onClick={props.handleClick} alt='Random element, which player have to remember to play the game.'
             />
         </div>
     )
