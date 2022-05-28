@@ -1,0 +1,13 @@
+.cards {
+    width: calc( 20% - 1rem );
+    height: 30vh;
+    text-align: center;
+    color: var(--wkd-white);
+    background-color: var(--wkd-yellow-dark);
+  }
+  
+  .cards-images{
+    height: 100%;
+    width: 100%;
+  }
+  

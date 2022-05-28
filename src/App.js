@@ -8,7 +8,6 @@ import Stopwatch from './components/Stopwatch';
 import Besttime from './components/Besttime';
 
 /*
-  todo finalize design
   todo cleanup code
   todo implement own file templates to code structure
   todo nicer win notification
@@ -51,7 +50,7 @@ export default function App() {
 
 //#endregion
 
-//#region Stopwatch, Best-Time and Win-Validation
+//#region Stopwatch, Best-Time, Best-Time Reset and Win-Validation
 
 const [stopwatchRun, setStopwatchRun] = React.useState(true);
 const [stopwatchReset, setStopwatchReset] = React.useState(false);
@@ -69,7 +68,7 @@ if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage
 };
 
   // Win validation 
-  if(counter === 0){
+  if(counter === 8){
 
     // stop stopwatch 
     setStopwatchRun(false);
@@ -81,7 +80,7 @@ if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage
     // Gratulate user, compare besttime and reset game
     const onClick = async () => { // ! NNNEEED?
       // Wait for the notification
-      const winMessage = "";
+      let winMessage = "";
       localStorage.Language === "de" 
         ? winMessage = `Gratulation, du hats das Spiel in ${min}:${sec}:${msec} gewonnen!`
         : winMessage = `Congratulations, you won the game in ${min}:${sec}:${msec} !`
@@ -98,7 +97,7 @@ if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage
                 localStorage.setItem('best-minutes', min);
                 localStorage.setItem('best-seconds', sec);
                 localStorage.setItem('best-milliseconds', msec);
-                const bestMessage = "";
+                let bestMessage = "";
                 localStorage.Language === "de" 
                   ? bestMessage = `Gratulation, neue Bestzeit!`
                   : bestMessage = `Congratulations, new best-time !`
@@ -113,13 +112,23 @@ if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage
       setStopwatchReset(false); // Set reset trigger back to false
    };
 
+   // Best-Time Reset
+   function timeReset (event){
+    event.preventDefault();
+    setBesttime([]);
+    localStorage.removeItem('best-minutes');
+    localStorage.removeItem('best-seconds');
+    localStorage.removeItem('best-milliseconds');
+   };
+
+
 //#endregion
 
   return (
    <div className="App">
       
         <header className='header'>
-            <div>     
+            <div className='main-title-div'>     
                 <h1>Memory-Card-Game</h1>
                 <h6>{
                   localStorage.Language === "de"
@@ -135,6 +144,7 @@ if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage
                 <div className='timeWrapper'>
                     <Stopwatch run={stopwatchRun} reset={stopwatchReset} />
                     <Besttime />
+                    <input type="button" value="reset" className='reset-btn' onClick={timeReset} />
                 </div>
             </div>
         </header>
