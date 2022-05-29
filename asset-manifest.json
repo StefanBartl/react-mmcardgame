@@ -1,7 +1,7 @@
 {
-  "main.css": "/react-mmcardgame/static/css/main.97f12371.chunk.css",
-  "main.js": "/react-mmcardgame/static/js/main.b874b07d.chunk.js",
-  "main.js.map": "/react-mmcardgame/static/js/main.b874b07d.chunk.js.map",
+  "main.css": "/react-mmcardgame/static/css/main.fa19ee07.chunk.css",
+  "main.js": "/react-mmcardgame/static/js/main.8eaa9d8c.chunk.js",
+  "main.js.map": "/react-mmcardgame/static/js/main.8eaa9d8c.chunk.js.map",
   "runtime~main.js": "/react-mmcardgame/static/js/runtime~main.e0255286.js",
   "runtime~main.js.map": "/react-mmcardgame/static/js/runtime~main.e0255286.js.map",
   "static/js/2.7af93e32.chunk.js": "/react-mmcardgame/static/js/2.7af93e32.chunk.js",
@@ -9,7 +9,7 @@
   "static/js/3.76c3d8c6.chunk.js": "/react-mmcardgame/static/js/3.76c3d8c6.chunk.js",
   "static/js/3.76c3d8c6.chunk.js.map": "/react-mmcardgame/static/js/3.76c3d8c6.chunk.js.map",
   "index.html": "/react-mmcardgame/index.html",
-  "precache-manifest.bea44a5e7aed8e964373d8b510271fb5.js": "/react-mmcardgame/precache-manifest.bea44a5e7aed8e964373d8b510271fb5.js",
+  "precache-manifest.0a8f1c043a4748329200c186c706c2ee.js": "/react-mmcardgame/precache-manifest.0a8f1c043a4748329200c186c706c2ee.js",
   "service-worker.js": "/react-mmcardgame/service-worker.js",
-  "static/css/main.97f12371.chunk.css.map": "/react-mmcardgame/static/css/main.97f12371.chunk.css.map"
+  "static/css/main.fa19ee07.chunk.css.map": "/react-mmcardgame/static/css/main.fa19ee07.chunk.css.map"
 }
