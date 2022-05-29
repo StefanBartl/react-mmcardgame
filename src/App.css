@@ -121,12 +121,14 @@ select {
 
 /* #endregion */
 
+body {
+  background-color: var(--wkd-grey);
+}
+
 .App {
-  height: 100vh;
     display: flex;
     flex-direction: column;
     gap: .5rem;
-    background-color: var(--wkd-grey);
 }
 
 .header{
@@ -135,10 +137,11 @@ select {
   padding-right: 1rem;
   padding-top: .5rem;
   padding-bottom: .5rem;
+  align-items: center;
 }
 
 .main-title-div{
-  width: 30%;
+  width: 60%;
   text-align: center;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -147,10 +150,9 @@ select {
 .main-title-div > h1 {
   color: var(--wkd-grapefruit);
   font-size: x-larger;
-  font-weight: bolder;
 }
 
-.main-title-div > h6 {
+.main-title-div > h4 {
   color: var(--wkd-white);
 }
 
@@ -158,6 +160,7 @@ select {
   display: flex;
   flex-direction: column;
   min-width: clamp(11rem, 13rem, auto);
+  height: fit-content;
   margin-left: auto;
   margin-right: 1rem;
   padding: .5rem;
@@ -227,4 +230,31 @@ select {
 
 .cards:hover {
   outline: solid 3px  var(--wkd-grapefruit);
+}
+
+/* ? Animation */
+
+.startstop-animation{
+  animation: startstopAnimation 5s alternate ease-in-out infinite;
+}
+
+@keyframes startstopAnimation {
+  
+  0%{
+    transform: scale(1);
+    background-color: var(--wkd-pastell-blue);
+  }
+
+  50%{
+  transform: scale(1.5);
+  }
+
+  75% {
+    background-color: var(--wkd-grapefruit);
+  }
+
+  100%{
+  transform: scale(1);
+  }
+
 }

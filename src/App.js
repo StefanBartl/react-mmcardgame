@@ -52,14 +52,13 @@ export default function App() {
 //#endregion
 
 
-//#region Stopwatch, Win-Validation, Best-Time, Best-Time Reset and 
+//#region Stopwatch, Win-Validation, Best-Time, Best-Time Reset and Start/Stop Animation
 
 const [stopwatchRun, setStopwatchRun] = React.useState(true);
 
 const [stopwatchReset, setStopwatchReset] = React.useState(false);
 
 const [bestTime, setBesttime] = React.useState([]);
-
 
 // ? Get local storage stored best-time if exists
 if(localStorage.getItem('best-minutes') && bestTime[0] !== parseInt(localStorage.getItem('best-minutes')) && bestTime.length !== 0){
@@ -154,9 +153,18 @@ function startStop (event){
 
 };
 
+// ? Toggle Start/Stop Button animation
+React.useEffect(()=>{
+
+  !stopwatchReset === true
+    ? document.querySelector('.startstop-btn').classList.add('startstop-animation')
+    : document.querySelector('.startstop-btn').classList.remove('startstop-animation');
+
+}, [stopwatchReset]);
+
 //#endregion
 
-// ? Start game correctly
+// ! Start game correctly
 
 React.useEffect(()=>{
   document.querySelector('.startstop-btn').click();
@@ -168,11 +176,11 @@ React.useEffect(()=>{
         <header className='header'>
             <div className='main-title-div'>     
                 <h1>Memory-Card-Game</h1>
-                <h6>{
+                <h4>{
                   localStorage.Language === "de"
                     ? "Klicke auf die 10 Bilder so schnell du kannst, klicke aber auf keines 2 mal oder du beginnst von vorne!"
                     : "Click all 10 images as fast as you can, but don't click on any twice or you have to restart!"
-                }</h6>
+                }</h4>
             </div>
             <div className='stats'>
                 <div className='header-points'>
